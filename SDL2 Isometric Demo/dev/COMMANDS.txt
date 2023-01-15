@@ -1,0 +1,5 @@
+--- Compile ---
+gcc -o exe/program.exe dev/main.c -Idev/include -Ldev/lib -Wall -mwindows -lmingw32 -lSDL2main -lSDL2 -lSDL2_image
+
+--- Run ---
+cd exe ; ./program.exe ; cd ..
