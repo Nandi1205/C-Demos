@@ -33,7 +33,7 @@ bool init();
 bool loop();
 void quit();
 void draw();
-void drawTile(Tile, int);
+void drawTile(Tile*, int);
 Vector2D gridToScreen(Grid);
 Grid screenToGrid(Vector2D);
 
@@ -144,16 +144,16 @@ void draw() {
 
 	for (int y = 0; y < GRID_SIZE; y++) {
 		for (int x = 0; x < GRID_SIZE; x++) {
-			if (x == selectedGrid.x && y == selectedGrid.y) drawTile(tiles[y][x], -3);
-			else drawTile(tiles[y][x], 0);
+			if (x == selectedGrid.x && y == selectedGrid.y) drawTile(&tiles[y][x], -3);
+			else drawTile(&tiles[y][x], 0);
 		}
 	}
 
 	SDL_RenderPresent(renderer);
 }
 
-void drawTile(Tile tile, int offsetY) {
-	Vector2D screen = gridToScreen(tile.pos);
+void drawTile(Tile* tile, int offsetY) {
+	Vector2D screen = gridToScreen((*tile).pos);
 
 	SDL_RenderCopy(renderer, blankTileTexture, NULL, &(SDL_Rect){screen.x, screen.y + offsetY, TILE_W, TILE_H});
 }
